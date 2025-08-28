@@ -153,7 +153,7 @@
         /* Mobile Sidebar */
         .mobile-sidebar {
             position: fixed;
-            top: 0;
+            top: 30px;
             right: -300px;
             width: 300px;
             height: 100vh;
@@ -240,18 +240,34 @@
             object-fit: cover;
             border: 5px solid var(--primary-color);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
         }
 
         .hero h1 {
             font-size: 3.5rem;
             margin-bottom: 1rem;
             line-height: 1.2;
+            animation: fadeInDown 1s ease;
         }
 
         .hero h2 {
             font-size: 1.8rem;
             color: var(--primary-color);
             margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease 0.3s forwards;
+            opacity: 0;
         }
 
         .hero p {
@@ -259,18 +275,46 @@
             margin-bottom: 2rem;
             color: var(--light-text);
             max-width: 600px;
+            animation: fadeInUp 1s ease 0.6s forwards;
+            opacity: 0;
         }
 
         .hero-buttons {
             display: flex;
             gap: 1rem;
             margin-top: 2rem;
+            animation: fadeInUp 1s ease 0.9s forwards;
+            opacity: 0;
         }
 
         .social-icons {
             display: flex;
             gap: 1rem;
             margin-top: 2rem;
+            animation: fadeInUp 1s ease 1.2s forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .social-icons a {
@@ -309,6 +353,14 @@
 
         .stat-item {
             padding: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+        }
+
+        .stat-item.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .stat-number {
@@ -354,6 +406,13 @@
             font-weight: 600;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             transition: var(--transition);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .skill.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .skill:hover {
@@ -361,6 +420,148 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
             background: var(--primary-color);
             color: white;
+        }
+
+        /* Education Section */
+        .education {
+            background: var(--card-bg);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--primary-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 10px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease;
+        }
+
+        .timeline-item.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            transform: translateX(50px);
+        }
+
+        .timeline-item:nth-child(even).animate {
+            transform: translateX(0);
+        }
+
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            position: relative;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .timeline-content h4 {
+            color: var(--light-text);
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .timeline-content p {
+            margin-bottom: 0;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background-color: white;
+            border: 4px solid var(--primary-color);
+            border-radius: 50%;
+            top: 20px;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(odd)::after {
+            right: -13px;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -13px;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            background: var(--background);
+        }
+
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+        }
+
+        .gallery-item.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 15px;
+            transform: translateY(100%);
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
         }
 
         /* Skills & Technologies Section */
@@ -380,6 +581,13 @@
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             transition: var(--transition);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .tech-category.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .tech-category:hover {
@@ -429,6 +637,13 @@
             overflow: hidden;
             transition: var(--transition);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .project-card.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .project-card:hover {
@@ -569,6 +784,13 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             transition: var(--transition);
             width: 200px;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .payment-method.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .payment-method:hover {
@@ -608,6 +830,14 @@
             display: flex;
             align-items: center;
             gap: 1rem;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.8s ease;
+        }
+
+        .contact-item.animate {
+            opacity: 1;
+            transform: translateX(0);
         }
 
         .contact-icon {
@@ -636,6 +866,14 @@
             padding: 2.5rem;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateX(20px);
+            transition: all 0.8s ease;
+        }
+
+        .contact-form.animate {
+            opacity: 1;
+            transform: translateX(0);
         }
 
         .form-group {
@@ -784,6 +1022,8 @@
             .hero-image img {
                 width: 280px;
                 height: 280px;
+                margin-top: 0;
+                margin-left: 0;
             }
 
             .stats-container {
@@ -799,6 +1039,29 @@
             }
 
             .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+
+            .timeline-item:nth-child(odd)::after, 
+            .timeline-item:nth-child(even)::after {
+                left: 18px;
+            }
+
+            .gallery-container {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
@@ -835,16 +1098,20 @@
             .footer-content {
                 grid-template-columns: 1fr;
             }
+
+            .gallery-container {
+                grid-template-columns: 1fr;
+            }
         }
         @media (max-width: 480px) {
             .hero-image img {
                 width: 200px;
                 height: 200px;
-                margin-top: -870px;
+                margin-top: -850px;
                 margin-left: 0px;
             }
 
-            .hero{
+            .hero {
                 margin-top: 250px;
             }
 
@@ -860,6 +1127,9 @@
             .stats-container {
                 grid-template-columns: 1fr;
             }
+            .social-icons{
+                justify-content: center;
+            }
         }
     </style>
 </head>
@@ -872,6 +1142,8 @@
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
                     <li><a href="#skills">Skills</a></li>
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#testimonials">Testimonials</a></li>
@@ -889,6 +1161,8 @@
         <ul class="mobile-nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#gallery">Gallery</a></li>
             <li><a href="#skills">Skills</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#testimonials">Testimonials</a></li>
@@ -916,7 +1190,7 @@
                 </div>
             </div>
             <div class="hero-image">
-                <img src="image/usman1.jpg" alt="Usman Haider">
+                <img src="image/4.jpg" alt="Usman Haider">
             </div>
         </div>
     </section>
@@ -952,7 +1226,7 @@
             <div class="about-content">
                 <div class="about-text">
                     <h3>Curious about who I am?</h3>
-                    <p>Hello! I'm Usman Haider, a WordPress and HTML website designer from Pakistan, working with global clients to create stunning, high-performance websites.</p>
+                    <p>Hello! I'm Usman Haider, Nick Name is ( <strong>Dr. Osman Bey</strong> ) a WordPress and HTML website designer from Pakistan, working with global clients to create stunning, high-performance websites.</p>
                     <p>My goal? Simple—build websites that help you grow your business, whether that's generating leads, selling products, or establishing authority. I focus on clean, responsive designs that work smoothly on all devices. Behind the scenes, I make sure everything's fast, user-friendly, and SEO-ready.</p>
                     <p>Let's build something great together.</p>
                     <div class="skills">
@@ -967,7 +1241,91 @@
                     </div>
                 </div>
                 <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="About Usman Haider" style="width: 100%; border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.2);">
+                    <img src="image/7.jpg" alt="About Usman Haider" style="width: 100%; border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.2);">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="education">
+        <div class="container">
+            <h2 class="section-title">Education & Degrees</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Bachelor of ELT in English Language Teaching</h3>
+                        <h4>The Islamia University of Bahawalpur</h4>
+                        <p>2022 - 2025</p>
+                        <p>Specialized in English Language Teaching methodologies and practices.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Web Development & SEO Specialist Certification</h3>
+                        <h4>Coursera IT Department</h4>
+                        <p>2024</p>
+                        <p>Completed a comprehensive web development course covering HTML5, CSS3, JavaScript, and responsive design principles. Learned advanced SEO techniques, keyword research, on-page and off-page optimization strategies.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Bahawalpur Medical College</h3>
+                        <h4>Doctor Of Homeopathic Medicine and Surgery</h4>
+                        <p>2018 - 2022</p>
+                        <p>Learned advanced homeopathic principles, patient care, and holistic treatment approaches.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <h2 class="section-title">My Gallery</h2>
+            <div class="gallery-container">
+                <div class="gallery-item">
+                    <img src="image/6.jpg" alt="Usman Haider - Professional Photo">
+                    <div class="gallery-caption">
+                        <h3>Professional Headshot</h3>
+                        <p>Web Developer & SEO Specialist</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="image/usman1.jpg" alt="Usman Working">
+                    <div class="gallery-caption">
+                        <h3>At Work</h3>
+                        <p>Coding and developing web solutions</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="image/8.jpg" alt="Team Collaboration">
+                    <div class="gallery-caption">
+                        <h3>Team Collaboration</h3>
+                        <p>Working with clients and team members</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="image/5.jpg" alt="Team Collaboration">
+                    <div class="gallery-caption">
+                        <h3>Team Collaboration</h3>
+                        <p>Working with clients and team members</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="image/11.jpg" alt="Team Collaboration">
+                    <div class="gallery-caption">
+                        <h3>Team Collaboration</h3>
+                        <p>Working with clients and team members</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="image/10.jpg" alt="Team Collaboration">
+                    <div class="gallery-caption">
+                        <h3>Team Collaboration</h3>
+                        <p>Working with clients and team members</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1073,6 +1431,51 @@
                             <span class="project-tag">HTML</span>
                         </div>
                         <a href="https://balashoes.shop/" class="btn">View Project</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-blog"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Perfume Brand Website</h3>
+                        <p>A responsive website for a Hashmi Fragrance brand with content management system and SEO optimization.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">WordPress</span>
+                            <span class="project-tag">PHP</span>
+                            <span class="project-tag">MySQL</span>
+                        </div>
+                        <a href="https://usmanhaider103.github.io/Hashmi-Perfume/" class="btn">View Project</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Responsive High Class Design</h3>
+                        <p>A mobile-first web application with progressive web responsiveness capabilities.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">HTML</span>
+                            <span class="project-tag">JavaScript</span>
+                            <span class="project-tag">CSS3</span>
+                        </div>
+                        <a href="https://usmanhaider103.github.io/Pak/" class="btn">View Project</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>SEO Optimization Project</h3>
+                        <p>Comprehensive SEO strategy implementation for better search engine rankings.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">SEO</span>
+                            <span class="project-tag">Analytics</span>
+                            <span class="project-tag">Keywords</span>
+                        </div>
+                        <a href="https://usmanhaider103.github.io/Pak/" class="btn">View Project</a>
                     </div>
                 </div>
             </div>
@@ -1206,6 +1609,8 @@
                     <ul class="footer-links">
                         <li><a href="#home">Home</a></li>
                         <li><a href="#about">About</a></li>
+                        <li><a href="#education">Education</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
                         <li><a href="#skills">Skills</a></li>
                         <li><a href="#projects">Projects</a></li>
                         <li><a href="#testimonials">Testimonials</a></li>
@@ -1227,8 +1632,8 @@
                     <h3>Newsletter</h3>
                     <p>Subscribe to my newsletter for updates and latest projects.</p>
                     <div class="footer-newsletter">
-                        <input type="email" placeholder="Enter your email">
-                        <button class="btn" style="width: 100%;">Subscribe</button>
+                        <input type="email" id="newsletter-email" placeholder="Enter your email">
+                        <button class="btn" style="width: 100%;" id="newsletter-btn">Subscribe</button>
                     </div>
                 </div>
             </div>
@@ -1337,13 +1742,38 @@
 
         // Newsletter subscription
         const newsletterForm = document.querySelector('.footer-newsletter');
-        if (newsletterForm) {
-            newsletterForm.addEventListener('submit', function(e) {
+        const newsletterBtn = document.getElementById('newsletter-btn');
+        const newsletterEmail = document.getElementById('newsletter-email');
+        
+        if (newsletterBtn) {
+            newsletterBtn.addEventListener('click', function(e) {
                 e.preventDefault();
-                alert('Thanks for subscribing to my newsletter!');
-                newsletterForm.reset();
+                if (newsletterEmail.value) {
+                    alert('Thanks for subscribing to my newsletter!');
+                    newsletterEmail.value = '';
+                } else {
+                    alert('Please enter your email address.');
+                }
             });
         }
+
+        // Animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.stat-item, .skill, .tech-category, .project-card, .payment-method, .contact-item, .contact-form, .timeline-item, .gallery-item');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.classList.add('animate');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', animateOnScroll);
+        // Initial call to check elements in view on page load
+        window.addEventListener('load', animateOnScroll);
     </script>
 </body>
 </html>
